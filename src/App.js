@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import logo from './pastebin.png';
 import './App.css';
 
 function App() {
@@ -7,15 +7,13 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Welcome to <code>Pastebin</code>
         </p>
         <a
           className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/create"
         >
-          Learn React
+          Now Create a Pastebin
         </a>
       </header>
     </div>
