@@ -8,22 +8,29 @@ import Toast from 'react-bootstrap/Toast';
 
 function CreatePage() {
 
-const [name,setName] = useState("");
-const [description,setDescription] = useState("");
-const [content,setContent] = useState("");
-const [deadline,setDeadline] = useState(null);
-const [link,setLink] = useState("");
-const [error,setError] = useState("");
+    const [name,setName] = useState("");
+    const [description,setDescription] = useState("");
+    const [content,setContent] = useState("");
+    const [deadline,setDeadline] = useState(null);
+    const [link,setLink] = useState("");
+    const [error,setError] = useState("");
 
     function handleSubmit(e) {
         e.preventDefault();
+
+        const token = localStorage.getItem("token");
+
         const data = {
             name: name,
             description: description,
             content: content,
             expireDate: deadline,
         }
-        axios.post(`${process.env.REACT_APP_API_URL}/api/pastebin/create`, data)
+        axios.post(`${process.env.REACT_APP_API_URL}/api/pastebin/create`, data, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
         .then(response => {
             setLink(`http://${window.location.host}/${response.data}`)
         }).catch(error => {

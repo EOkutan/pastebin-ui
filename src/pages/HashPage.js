@@ -16,7 +16,13 @@ function HashPage() {
     const [deadline,setDeadline] = useState(null);
     const [error,setError] = useState("");
 
-    axios.get(`${process.env.REACT_APP_API_URL}/api/pastebin/${hash}`)
+    const token = localStorage.getItem("token");
+
+    axios.get(`${process.env.REACT_APP_API_URL}/api/pastebin/${hash}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
         .then(response => {
             setName(response.data.name);            
             setDescription(response.data.description);            

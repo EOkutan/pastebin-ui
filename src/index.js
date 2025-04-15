@@ -10,14 +10,32 @@ import CreatePage from './pages/CreatePage';
 import HashPage from './pages/HashPage';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from "react-router";
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
+import PrivateRoute from './component/PrivateRoute';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="/create" element={<CreatePage/>} />
-      <Route path="/:hash" element={<HashPage />} />
+      <Route path="/" element={<LoginPage />} />
+      <Route path="/home" element={
+          <PrivateRoute>
+              <App/>
+          </PrivateRoute>
+        } />
+        <Route path="/create" element={
+          <PrivateRoute>
+              <CreatePage/>
+          </PrivateRoute>
+        } />
+      <Route path="/:hash" element={
+          <PrivateRoute>
+              <HashPage/>
+          </PrivateRoute>
+        } />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/signup" element={<SignupPage />} />
     </Routes>
   </BrowserRouter>
 );
